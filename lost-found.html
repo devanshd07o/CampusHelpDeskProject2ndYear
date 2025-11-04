@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lost & Found | Campus Helpdesk</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Lost & Found Section</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="lost-found.html" class="active">Lost & Found</a></li>
+        <li><a href="complaints.html">Complaints</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h2>Report Lost or Found Item</h2>
+      <form id="lostFoundForm">
+        <label for="type">Select Type:</label>
+        <select id="type" required>
+          <option value="lost">Lost</option>
+          <option value="found">Found</option>
+        </select>
+
+        <label for="itemName">Item Name:</label>
+        <input type="text" id="itemName" placeholder="e.g. Wallet, Phone" required />
+
+        <label for="description">Description:</label>
+        <textarea id="description" placeholder="Enter details" required></textarea>
+
+        <label for="contact">Contact Info:</label>
+        <input type="text" id="contact" placeholder="Phone / Email" required />
+
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+
+    <section class="display-section">
+      <h2>All Items</h2>
+      <div id="itemList" class="item-list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Campus Helpdesk Portal | Lost & Found System</p>
+  </footer>
+
+  <script>
+    // Retrieve existing data
+    const items = JSON.parse(localStorage.getItem('lostFoundData')) || [];
+    const form = document.getElementById('lostFoundForm');
+    const itemList = document.getElementById('itemList');
+
+    // Display items
+    function displayItems() {
+      itemList.innerHTML = '';
+      if (items.length === 0) {
+        itemList.innerHTML = '<p>No items reported yet.</p>';
+        return;
+      }
+      items.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.classList.add('item');
+        div.innerHTML = `
+          <h3>${item.type.toUpperCase()} - ${item.name}</h3>
+          <p>${item.description}</p>
+          <p><strong>Contact:</strong> ${item.contact}</p>
+          <button onclick="deleteItem(${index})">Delete</button>
+        `;
+        itemList.appendChild(div);
+      });
+    }
+
+    // Add new item
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const newItem = {
+        type: document.getElementById('type').value,
+        name: document.getElementById('itemName').value,
+        description: document.getElementById('description').value,
+        contact: document.getElementById('contact').value,
+      };
+      items.push(newItem);
+      localStorage.setItem('lostFoundData', JSON.stringify(items));
+      form.reset();
+      displayItems();
+    });
+
+    // Delete item
+    function deleteItem(index) {
+      items.splice(index, 1);
+      localStorage.setItem('lostFoundData', JSON.stringify(items));
+      displayItems();
+    }
+
+    displayItems();
+  </script>
+  <script src="assets/js/script.js"></script>
+
+</body>
+</html>

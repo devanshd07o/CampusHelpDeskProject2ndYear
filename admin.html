@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | Campus Helpdesk</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #001f3f, #002b5b, #003b73);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: #ffcc00;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffcc00;
+    }
+
+    main {
+      flex: 1;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(255, 255, 255, 0.2);
+    }
+
+    .card h2 {
+      color: #ffcc00;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+
+    table th, table td {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.8rem;
+      text-align: left;
+    }
+
+    table th {
+      color: #ffcc00;
+    }
+
+    button {
+      background: #ffcc00;
+      color: #000;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #fff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .empty {
+      text-align: center;
+      font-style: italic;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Admin Dashboard</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="lost-found.html">Lost & Found</a></li>
+        <li><a href="complaints.html">Complaints</a></li>
+        <li><a href="admin.html" class="active">Admin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="card" id="lostFoundCard">
+      <h2>Lost & Found Data</h2>
+      <table id="lostFoundTable">
+        <thead>
+          <tr><th>Type</th><th>Item</th><th>Description</th><th>Contact</th><th>Action</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="card" id="complaintsCard">
+      <h2>Complaints Data</h2>
+      <table id="complaintsTable">
+        <thead>
+          <tr><th>Category</th><th>Title</th><th>Status</th><th>Contact</th><th>Action</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Campus Helpdesk Portal | Admin Control Panel</p>
+  </footer>
+
+  <script>
+    const lostFoundData = JSON.parse(localStorage.getItem('lostFoundData')) || [];
+    const complaintData = JSON.parse(localStorage.getItem('complaintData')) || [];
+
+    const lostFoundTable = document.querySelector('#lostFoundTable tbody');
+    const complaintsTable = document.querySelector('#complaintsTable tbody');
+
+    function renderTables() {
+      lostFoundTable.innerHTML = lostFoundData.length ? '' : '<tr><td colspan=\"5\" class=\"empty\">No data available</td></tr>';
+      complaintsTable.innerHTML = complaintData.length ? '' : '<tr><td colspan=\"5\" class=\"empty\">No data available</td></tr>';
+
+      lostFoundData.forEach((item, i) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${item.type}</td><td>${item.name}</td><td>${item.description}</td><td>${item.contact}</td>
+                        <td><button onclick=\"deleteLost(${i})\">Delete</button></td>`;
+        lostFoundTable.appendChild(tr);
+      });
+
+      complaintData.forEach((comp, i) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${comp.category}</td><td>${comp.title}</td><td>${comp.status}</td><td>${comp.contact}</td>
+                        <td><button onclick=\"deleteComplaint(${i})\">Delete</button></td>`;
+        complaintsTable.appendChild(tr);
+      });
+    }
+
+    function deleteLost(index) {
+      lostFoundData.splice(index, 1);
+      localStorage.setItem('lostFoundData', JSON.stringify(lostFoundData));
+      renderTables();
+    }
+
+    function deleteComplaint(index) {
+      complaintData.splice(index, 1);
+      localStorage.setItem('complaintData', JSON.stringify(complaintData));
+      renderTables();
+    }
+
+    renderTables();
+  </script>
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
