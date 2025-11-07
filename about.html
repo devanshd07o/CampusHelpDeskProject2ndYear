@@ -1,0 +1,183 @@
+<!-- DEVANSH DUBEY || BHANU RAGHAV ||ANURAG JAISWAL-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About | Campus Helpdesk</title>
+  <link rel="icon" href="assets/img/favicon.png" />
+  <style>
+    :root{
+      --bg:#0f172a;         /* slate-900 */
+      --card:#111827;       /* gray-900 */
+      --muted:#9ca3af;      /* gray-400 */
+      --text:#e5e7eb;       /* gray-200 */
+      --brand:#22c55e;      /* green-500 */
+      --ring:#374151;       /* gray-700 */
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      background:linear-gradient(180deg,#0b1220, #0f172a 40%, #0b1220 100%);
+      color:var(--text);
+    }
+    header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(8px);
+      background:rgba(15,23,42,0.7);
+      border-bottom:1px solid var(--ring);
+    }
+    .container{max-width:1100px;margin:0 auto;padding:18px 16px}
+    nav ul{display:flex;gap:14px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+    nav a{
+      text-decoration:none;color:var(--text);
+      padding:8px 12px;border-radius:10px;border:1px solid transparent;
+    }
+    nav a.active, nav a:hover{border-color:var(--ring); background:#0b1220}
+    .hero{
+      padding:56px 0 28px;border-bottom:1px solid var(--ring);
+      text-align:center;
+    }
+    .badge{display:inline-block;font-size:12px;letter-spacing:.08em;color:var(--muted);
+      border:1px solid var(--ring);padding:6px 10px;border-radius:999px}
+    h1{font-size:40px;line-height:1.1;margin:16px 0 8px}
+    .lead{color:var(--muted);max-width:760px;margin:0 auto 18px;font-size:18px}
+    .grid{display:grid;gap:18px;margin:28px 0;grid-template-columns:repeat(12,1fr)}
+    .card{
+      grid-column: span 12;
+      background:linear-gradient(180deg,#0f172a, #0b1220);
+      border:1px solid var(--ring); border-radius:16px; padding:18px;
+    }
+    @media (min-width:768px){
+      .span-6{grid-column:span 6}
+      .span-4{grid-column:span 4}
+      .span-8{grid-column:span 8}
+    }
+    h2{margin:0 0 8px;font-size:22px}
+    p{color:var(--muted);margin:0 0 10px}
+    ul{margin:10px 0 0 18px;color:var(--muted)}
+    .stat{
+      display:flex;align-items:center;gap:10px;
+      padding:14px;border:1px dashed var(--ring);border-radius:12px;
+    }
+    .dot{width:10px;height:10px;border-radius:50%;background:var(--brand)}
+    .cta{
+      display:flex;flex-wrap:wrap;gap:10px;margin-top:6px
+    }
+    .btn{
+      appearance:none;border:1px solid var(--ring);background:#0b1220;color:var(--text);
+      padding:10px 14px;border-radius:12px;text-decoration:none;cursor:pointer
+    }
+    .btn.primary{border-color:transparent;background:var(--brand);color:#052e13}
+    footer{
+      margin-top:24px;border-top:1px solid var(--ring);
+      color:var(--muted);font-size:14px;text-align:center;padding:18px 0 28px
+    }
+    .kpis{display:grid;gap:12px}
+    @media(min-width:768px){.kpis{grid-template-columns:repeat(3,1fr)}}
+    .kpi{padding:14px;border:1px solid var(--ring);border-radius:14px;text-align:center}
+    .kpi b{font-size:24px;color:var(--text)}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="lost-found.html">Lost & Found</a></li>
+          <li><a href="complaints.html">Complaints</a></li>
+          <li><a href="admin.html">Admin</a></li>
+          <li><a class="active" href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="badge">Campus Helpdesk</span>
+      <h1>About the Project</h1>
+      <p class="lead">
+        This mini project centralizes student issues like complaints, lost-and-found,
+        and quick admin communication into one clean dashboard. Built for speed, clarity,
+        and the bare minimum drama.
+      </p>
+      <div class="kpis">
+        <div class="kpi"><b>3</b><div>Core Modules</div></div>
+        <div class="kpi"><b>~1–2 ms</b><div>UI response target</div></div>
+        <div class="kpi"><b>100%</b><div>Mobile-friendly</div></div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card span-8">
+        <h2>Mission</h2>
+        <p>
+          Make campus problem-reporting boringly efficient. Students log issues in seconds,
+          admins track status transparently, and no one has to spam five WhatsApp groups ever again.
+        </p>
+        <ul>
+          <li>Simple forms, strict validation, fast feedback</li>
+          <li>Status-based tracking to avoid “bhai dekh liya?” chaos</li>
+          <li>Lightweight front-end; back-end agnostic</li>
+        </ul>
+      </div>
+
+      <div class="card span-4">
+        <h2>Tech Stack</h2>
+        <p class="mono">
+          HTML5, CSS3, Vanilla JS<br/>
+          LocalStorage / API-ready<br/>
+          Modular pages
+        </p>
+        <div class="stat"><span class="dot"></span><span>Clean, accessible UI</span></div>
+      </div>
+
+      <div class="card span-6">
+        <h2>Modules</h2>
+        <ul>
+          <li><b>Complaints:</b> category, details, priority, status</li>
+          <li><b>Lost & Found:</b> item details, contact info, claim flow</li>
+          <li><b>Admin:</b> review, update status, basic analytics</li>
+        </ul>
+      </div>
+
+      <div class="card span-6">
+        <h2>How it Works</h2>
+        <ul>
+          <li>Student submits form with required fields</li>
+          <li>Entry stored (LocalStorage now, API later)</li>
+          <li>Admin updates status: Open → In-Progress → Resolved</li>
+          <li>Student sees current status without chasing people</li>
+        </ul>
+      </div>
+
+      <div class="card span-12">
+        <h2>Roadmap</h2>
+        <ul>
+          <li>Auth roles: Student, Admin</li>
+          <li>Search and filters on submissions</li>
+          <li>Email/SMS notifications</li>
+          <li>Export CSV and minimal audit log</li>
+        </ul>
+        <div class="cta">
+          <a class="btn primary" href="complaints.html">Raise a Complaint</a>
+          <a class="btn" href="lost-found.html">Report Lost/Found</a>
+          <a class="btn" href="admin.html">Go to Admin</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Built by Devansh || Bhanu || Anurag  for Mini Project II • ABES Engineering College • © <span id="y"></span>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
