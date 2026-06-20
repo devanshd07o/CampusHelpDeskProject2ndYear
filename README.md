@@ -1,4 +1,4 @@
-# Campus Helpdesk Portal
+<img width="3780" height="1823" alt="Screenshot 2026-06-20 105514" src="https://github.com/user-attachments/assets/fe5d853f-a5b5-484e-932f-04586044d496" /># Campus Helpdesk Portal
 
 Campus Helpdesk Portal is a **Second Year College Mini Project** developed as a **group project** to simplify common campus support tasks in one place.
 
@@ -10,6 +10,7 @@ Campus Helpdesk Portal is a **Second Year College Mini Project** developed as a 
   - Devansh Dubey  
   - Bhanu Raghav  
   - Anurag Jaiswal  
+<img width="3820" height="1825" alt="Screenshot 2026-06-20 105536" src="https://github.com/user-attachments/assets/e0dc89d1-a15a-4744-993c-eedf6e33fb5d" />
 
 ## Project Overview
 
@@ -68,7 +69,9 @@ The project is built with a simple and lightweight frontend stack for easy demon
 
 ## Screenshots
 
-_Screenshots will be added here._
+<img width="3780" height="1829" alt="Screenshot 2026-06-20 105418" src="https://github.com/user-attachments/assets/cf9c8685-169c-40fb-bc80-a2c3d5522c6c" />
+<img width="3784" height="1825" alt="Screenshot 2026-06-20 105457" src="https://github.com/user-attachments/assets/e9cabcb0-ea40-42ff-9940-9ed1855f08fc" />
+
 
 ## Future Scope
 
